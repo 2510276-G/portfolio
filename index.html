@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maryum Ahmad — AI Automation & Software Engineering</title>
+<meta name="description" content="Maryum Ahmad — Software Engineering student building AI automation systems with n8n, Python, and LLMs.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#faf6ef;
+    --ink:#181510;
+    --ink-soft:#6b6355;
+    --accent:#ff4b36;
+    --pop:#c6ff5e;
+    --line:#e7ded0;
+    --white:#ffffff;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    margin:0;
+    color:var(--ink);
+  }
+  a{color:inherit;}
+  ::selection{background:var(--ink); color:var(--paper);}
+  a:focus-visible, button:focus-visible{outline:3px solid var(--accent); outline-offset:2px;}
+  .wrap{max-width:1120px; margin:0 auto; padding:0 32px;}
+  .mark{
+    background:var(--pop);
+    padding:2px 8px;
+    border-radius:2px;
+    display:inline-block;
+    transform:rotate(-1deg);
+  }
+  .italic{font-style:italic; font-weight:500;}
+
+  /* NAV */
+  nav{
+    border-bottom:2px solid var(--ink);
+    position:sticky; top:0; background:var(--paper); z-index:20;
+  }
+  nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:76px;
+  }
+  .brand{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:1.4rem;
+    text-decoration:none;
+  }
+  .navlinks{display:flex; gap:32px; list-style:none; margin:0; padding:0;}
+  .navlinks a{
+    text-decoration:none;
+    font-size:0.95rem;
+    font-weight:500;
+    padding-bottom:3px;
+    border-bottom:2px solid transparent;
+    transition:border-color .15s;
+  }
+  .navlinks a:hover{border-color:var(--accent);}
+
+  /* HERO */
+  .hero{
+    padding:80px 0 60px;
+    position:relative;
+  }
+  .stamp{
+    position:absolute;
+    top:64px; right:32px;
+    border:2px solid var(--ink);
+    border-radius:50%;
+    width:108px; height:108px;
+    display:flex; align-items:center; justify-content:center;
+    text-align:center;
+    font-size:0.72rem;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.03em;
+    transform:rotate(9deg);
+    background:var(--white);
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 7vw, 5.4rem);
+    line-height:1.02;
+    font-weight:600;
+    max-width:16ch;
+    letter-spacing:-0.01em;
+  }
+  .hero p.lede{
+    margin-top:28px;
+    font-size:1.15rem;
+    color:var(--ink-soft);
+    max-width:52ch;
+  }
+  .hero-ctas{margin-top:34px; display:flex; gap:16px; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:14px 26px;
+    border-radius:100px;
+    font-size:0.95rem;
+    font-weight:600;
+    text-decoration:none;
+    border:2px solid var(--ink);
+    transition:transform .15s, background .15s, color .15s;
+  }
+  .btn-fill{background:var(--ink); color:var(--paper);}
+  .btn-fill:hover{background:var(--accent); border-color:var(--accent); color:var(--white); transform:translateY(-2px);}
+  .btn-outline{background:transparent; color:var(--ink);}
+  .btn-outline:hover{background:var(--ink); color:var(--paper); transform:translateY(-2px);}
+
+  /* SKILLS MARQUEE */
+  .skillband{
+    border-top:2px solid var(--ink);
+    border-bottom:2px solid var(--ink);
+    background:var(--ink);
+    color:var(--paper);
+    overflow:hidden;
+    padding:18px 0;
+  }
+  .skillband .track{
+    display:flex;
+    gap:36px;
+    white-space:nowrap;
+    width:max-content;
+    animation:scroll 26s linear infinite;
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1.4rem;
+  }
+  .skillband .track span{opacity:0.9;}
+  .skillband .track span.hi{color:var(--pop); opacity:1;}
+  @keyframes scroll{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .skillband .track{animation:none;}
+  }
+
+  /* SECTIONS */
+  section{padding:88px 0;}
+  .section-tag{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    color:var(--accent);
+    font-size:1.05rem;
+    margin-bottom:10px;
+  }
+  .section-title{
+    font-size:clamp(1.8rem, 4vw, 2.6rem);
+    font-weight:600;
+    margin-bottom:44px;
+    max-width:18ch;
+  }
+
+  /* ABOUT */
+  .about-grid{
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:56px;
+    align-items:start;
+  }
+  .dropcap:first-letter{
+    font-family:'Fraunces', serif;
+    font-size:3.6rem;
+    font-weight:700;
+    float:left;
+    line-height:0.8;
+    margin:6px 8px 0 0;
+    color:var(--accent);
+  }
+  .about-grid p{font-size:1.08rem; color:var(--ink); margin-bottom:18px;}
+  .about-side{
+    border-left:2px solid var(--ink);
+    padding-left:24px;
+  }
+  .about-side .fact{margin-bottom:22px;}
+  .about-side .fact-label{
+    font-size:0.78rem; text-transform:uppercase; letter-spacing:0.06em;
+    color:var(--ink-soft); font-weight:600; margin-bottom:4px;
+  }
+  .about-side .fact-value{font-size:1.02rem; font-weight:500;}
+
+  /* PROJECTS */
+  .project{
+    display:grid;
+    grid-template-columns:90px 1fr;
+    gap:24px;
+    padding:40px 0;
+    border-top:2px solid var(--ink);
+  }
+  .projects .project:last-child{border-bottom:2px solid var(--ink);}
+  .project-index{
+    font-family:'Fraunces', serif;
+    font-size:2.6rem;
+    font-weight:700;
+    color:var(--line);
+    line-height:1;
+  }
+  .project-head{
+    display:flex; align-items:baseline; gap:16px; flex-wrap:wrap; margin-bottom:12px;
+  }
+  .project h3{font-size:1.5rem; font-weight:600;}
+  .project-status{
+    font-size:0.75rem;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    padding:4px 12px;
+    border-radius:100px;
+    border:1.5px solid var(--ink);
+  }
+  .project-status.live{background:var(--pop);}
+  .project p.desc{color:var(--ink-soft); max-width:64ch; margin:0 0 16px; font-size:1.02rem;}
+  .project-tags{display:flex; flex-wrap:wrap; gap:10px;}
+  .project-tags span{
+    font-size:0.8rem;
+    font-weight:500;
+    padding:5px 12px;
+    border:1.5px solid var(--line);
+    border-radius:100px;
+    color:var(--ink-soft);
+  }
+
+  /* CONTACT */
+  .contact{
+    background:var(--ink);
+    color:var(--paper);
+    border-radius:18px;
+    padding:64px 48px;
+    text-align:center;
+  }
+  .contact h2{
+    color:var(--paper);
+    font-size:clamp(2rem, 5vw, 3.2rem);
+    max-width:18ch;
+    margin:0 auto 22px;
+    font-weight:600;
+  }
+  .contact p{color:#c9c2b3; max-width:46ch; margin:0 auto 34px; font-size:1.05rem;}
+  .contact-links{display:flex; gap:18px; justify-content:center; flex-wrap:wrap;}
+  .contact-links a{
+    text-decoration:none;
+    color:var(--ink);
+    background:var(--paper);
+    padding:14px 26px;
+    border-radius:100px;
+    font-weight:600;
+    font-size:0.95rem;
+    transition:background .15s, transform .15s;
+  }
+  .contact-links a:hover{background:var(--pop); transform:translateY(-2px);}
+
+  footer{
+    padding:36px 0 52px;
+    text-align:center;
+    font-size:0.85rem;
+    color:var(--ink-soft);
+  }
+
+  @media (max-width:820px){
+    .about-grid{grid-template-columns:1fr;}
+    .project{grid-template-columns:1fr;}
+    .project-index{font-size:1.6rem;}
+    .navlinks{display:none;}
+    .stamp{display:none;}
+    section{padding:60px 0;}
+    .contact{padding:44px 24px;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#" class="brand">Maryum Ahmad</a>
+    <ul class="navlinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero wrap">
+  <div class="stamp">Open<br>to work<br>&amp; freelance</div>
+  <h1>I teach machines to do the <span class="mark">boring parts</span> so I don't have to.</h1>
+  <p class="lede">Software Engineering student building <span class="italic">AI-powered automation</span> — agents, retrieval systems, and self-hosted workflows that run on their own, on real schedules, touching real tools.</p>
+  <div class="hero-ctas">
+    <a href="#projects" class="btn btn-fill">See the work →</a>
+    <a href="#contact" class="btn btn-outline">Let's talk</a>
+  </div>
+</header>
+
+<div class="skillband" aria-hidden="true">
+  <div class="track">
+    <span class="hi">n8n</span><span>Python</span><span class="hi">C++</span><span>RAG / pgvector</span><span class="hi">Ollama</span><span>Prompt Engineering</span><span class="hi">Docker</span><span>Postgres</span><span class="hi">Linux / VPS</span><span>API Integration</span>
+    <span class="hi">n8n</span><span>Python</span><span class="hi">C++</span><span>RAG / pgvector</span><span class="hi">Ollama</span><span>Prompt Engineering</span><span class="hi">Docker</span><span>Postgres</span><span class="hi">Linux / VPS</span><span>API Integration</span>
+  </div>
+</div>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-tag">— a little about me</div>
+    <h2 class="section-title">Second-year, building like it's my third job.</h2>
+    <div class="about-grid">
+      <div>
+        <p class="dropcap">Second-year Software Engineering student at Air University, Multan, spending most evenings building AI automation instead of scrolling.</p>
+        <p>Most of what I build lives on a self-hosted VPS — n8n, Postgres with pgvector, and Ollama running open models — wired into Gmail, LinkedIn, Calendar, and Drive through agents that actually get things done, not just chat about them.</p>
+      </div>
+      <div class="about-side">
+        <div class="fact">
+          <div class="fact-label">Currently</div>
+          <div class="fact-value">AI Intern at CodeAlpha</div>
+        </div>
+        <div class="fact">
+          <div class="fact-label">Based in</div>
+          <div class="fact-value">Multan, Pakistan</div>
+        </div>
+        <div class="fact">
+          <div class="fact-label">Building toward</div>
+          <div class="fact-value">Freelancing in Python & AI automation</div>
+        </div>
+        <div class="fact">
+          <div class="fact-label">Stack of choice</div>
+          <div class="fact-value">n8n + self-hosted LLMs</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="projects">
+  <div class="wrap">
+    <div class="section-tag">— selected work</div>
+    <h2 class="section-title">Things I've shipped and kept running.</h2>
+
+    <div class="project">
+      <div class="project-index">01</div>
+      <div>
+        <div class="project-head">
+          <h3>AI Executive Assistant</h3>
+          <span class="project-status live">Live</span>
+        </div>
+        <p class="desc">A Boss–Sub Agent system: one orchestrating agent delegates to specialized sub-agents for calendar, contacts, and email/file handling, each with its own memory — extended with a RAG pipeline so it can answer questions straight from stored documents.</p>
+        <div class="project-tags"><span>n8n</span><span>Ollama</span><span>Postgres + pgvector</span><span>Google Workspace APIs</span></div>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-index">02</div>
+      <div>
+        <div class="project-head">
+          <h3>LinkedIn Auto Poster</h3>
+          <span class="project-status live">Live</span>
+        </div>
+        <p class="desc">Finds a current AI/automation topic through web search, drafts a LinkedIn post with an AI agent, and pauses for my approval by email before anything goes out. Runs itself every Monday morning.</p>
+        <div class="project-tags"><span>n8n</span><span>SerpAPI</span><span>Gmail</span><span>LinkedIn API</span></div>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-index">03</div>
+      <div>
+        <div class="project-head">
+          <h3>Job Application Matching System</h3>
+          <span class="project-status">In progress</span>
+        </div>
+        <p class="desc">Pulls open roles from 16 companies across five ATS platforms, scores each one against a resume with AI, and surfaces only the strongest matches — no blind auto-apply, just a shortlist worth reading.</p>
+        <div class="project-tags"><span>n8n</span><span>Multi-source scraping</span><span>AI scoring</span><span>Google Sheets</span></div>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-index">04</div>
+      <div>
+        <div class="project-head">
+          <h3>Resume Screener</h3>
+          <span class="project-status live">Live</span>
+        </div>
+        <p class="desc">A self-hosted resume screening workflow running entirely on Ollama, deployed via Docker on a custom domain — no candidate data ever leaves the server.</p>
+        <div class="project-tags"><span>n8n</span><span>Ollama</span><span>Docker</span></div>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-index">05</div>
+      <div>
+        <div class="project-head">
+          <h3>Language Translation Tool</h3>
+          <span class="project-status">CodeAlpha internship</span>
+        </div>
+        <p class="desc">A clean Streamlit app for translating text between languages, built with an automatic fallback translator so it keeps working even when the primary service briefly isn't.</p>
+        <div class="project-tags"><span>Python</span><span>Streamlit</span><span>deep-translator</span></div>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-index">06</div>
+      <div>
+        <div class="project-head">
+          <h3>AI Lead Intelligence System</h3>
+          <span class="project-status">In development</span>
+        </div>
+        <p class="desc">An end-to-end lead qualification pipeline in the works: incoming leads get validated, deduplicated, and scored by an AI reasoning step, then routed automatically down one of several paths — voice follow-up, human review, nurture, or archive — with a full audit trail at every step.</p>
+        <div class="project-tags"><span>n8n</span><span>Ollama</span><span>Airtable</span><span>Voice AI</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact">
+      <h2>Have something worth automating?</h2>
+      <p>Open to freelance work, internships, and anyone who wants to build an agent that actually does the job.</p>
+      <div class="contact-links">
+        <a href="mailto:maryumahmad0786@gmail.com">maryumahmad0786@gmail.com</a>
+        <a href="https://github.com/2510276-G" target="_blank" rel="noopener">GitHub →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Maryum Ahmad </div>
+</footer>
+
+</body>
+</html>
